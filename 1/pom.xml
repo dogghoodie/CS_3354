@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>hoodie</groupId>
     <artifactId>JavaJSON</artifactId>
-    <version>1.0-SNAPSHOT</version> <!-- 1.0.0 upon final -->
+    <version>1.0</version> <!-- 1.0.0 upon final -->
 
     <dependencies>
         <!-- JSON Simple Dependency -->
