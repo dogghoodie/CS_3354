@@ -20,13 +20,5 @@ public class StreamJSON {
 			file.write(jsonObject.toJSONString());
 		}*/
 	}
-	public static void stream(String readPath, String writePath) {
-		/*try {
-			JSONObject sonObject = read(readPath);
-			write(writePath, jsonObject);
-
-		} catch (IOException | ParseException e){
-			e.printStackTrace();
-		}*/
-	}
 }
+

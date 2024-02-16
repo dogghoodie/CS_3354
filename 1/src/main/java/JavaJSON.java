@@ -8,11 +8,19 @@ class JavaJSON {
 		System.out.println("Enter the file path of the");
 		System.out.println("file you would like to edit.\n");
 		System.out.print("Enter: ");
+		
 		// Instantiate InputHandler to process user input
 		InputHandler handle = new InputHandler();
 		// Set input string to the input processed by handler
 		String input = handle.scan();
 		// Test handler - 
 		System.out.println(input);
+		
+		// Instantiate StreamJSON object
+		/*StreamJSON stream = new StreamJSON();
+		
+		stream.read();
+		stream.write();
+		*/	
 	}
 }
