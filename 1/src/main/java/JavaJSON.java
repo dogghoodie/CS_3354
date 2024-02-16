@@ -8,8 +8,10 @@ import org.json.simple.parser.JSONParser;
 
 class JavaJSON {
 	public static void main(String[] args) {
-		InputHandler input = new InputHandler();
-		String data = input.scan();
-		System.out.println(data);
+		System.out.print("Enter: ");
+
+		InputHandler handle = new InputHandler();
+		String input = handle.scan();
+		System.out.println(input);
 	}
 }
