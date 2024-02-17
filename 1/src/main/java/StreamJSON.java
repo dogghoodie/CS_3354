@@ -9,32 +9,58 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class StreamJSON {
-	public static void create(String filePath) throws ParseException, IOException {
-		JSONParser parser = new JSONParser();
-		JSONArray jsonArray;
-		try (FileReader reader = new FileReader(filePath)) {
-			jsonArray = (JSONArray) parser.parse(reader);
-		} catch (FileNotFoundException e) {
-			jsonArray = new JSONArray();
+	public static void read(String filePath) throws IOException, ParseException {
+   		JSONParser parser = new JSONParser();
+    	try (FileReader reader = new FileReader(filePath)) {
+     	JSONArray jsonArray = (JSONArray) parser.parse(reader);
+
+        // Iterates through and prints
+        for (Object obj : jsonArray) {
+			// Cast obj to JSONObject
+            JSONObject jsonObject = (JSONObject) obj;
+            // Extract each value from the JSONObject
+            String name = (String) jsonObject.get("Name");
+            String age = (String) jsonObject.get("Age");
+            JSONArray birthdayArray = (JSONArray) jsonObject.get("Birthday");
+            String birthday = (String) birthdayArray.get(0);
+
+            System.out.println("Name: " + name + " Age: " + age + " Birthday: " + birthday);
+        	System.out.println();
 		}
+    } catch (IOException | ParseException e) {
+        e.printStackTrace();
+    }
+}
+    public static void write(String filePath, JSONObject newValues) throws IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        JSONArray jsonArray;
 
-		JSONObject newObject = new JSONObject();
-		newObject.put("Name", "NewName");
-		newObject.put("Age", "NewAge");
-		newObject.put("Birthday", new JSONArray());
-		((JSONArray) newObject.get("Birthday")).add("xx/xx/xx");
+        // Read the existing JSON array
+        try (FileReader reader = new FileReader(filePath)) {
+            jsonArray = (JSONArray) parser.parse(reader);
+        } catch (IOException | ParseException e) {
+            jsonArray = new JSONArray(); // Creates new if issue w file
+            e.printStackTrace();
+        }
 
-		jsonArray.add(newObject);
+        // Update the first object in the array
+        if (!jsonArray.isEmpty()) {
+            JSONObject jsonObjectToUpdate = (JSONObject) jsonArray.get(0);
 
-		try (FileWriter file = new FileWriter(filePath)) {
-			file.write(jsonArray.toJSONString());
-			file.flush();
-		}
-	}
+            // Update the values w newValues
+            jsonObjectToUpdate.put("Name", newValues.get("Name"));
+            jsonObjectToUpdate.put("Age", newValues.get("Age"));
+            jsonObjectToUpdate.put("Birthday", newValues.get("Birthday"));
+        } else {
+            // If the array is empty, simply add the newValues object to it
+            jsonArray.add(newValues);
+        }
 
-	public static void read() throws IOException, ParseException {
-	}
-	public static void write(String filePath, JSONObject jsonObject) throws IOException{
-	}
+        // Write the updated JSON array back to the file
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(jsonArray.toJSONString());
+            file.flush();
+        }
+    }
 }
 
