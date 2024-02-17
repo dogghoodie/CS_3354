@@ -15,22 +15,22 @@ public class StreamJSON {
      	JSONArray jsonArray = (JSONArray) parser.parse(reader);
 
         // Iterates through and prints
-        for (Object obj : jsonArray) {
-			// Cast obj to JSONObject
-            JSONObject jsonObject = (JSONObject) obj;
-            // Extract each value from the JSONObject
-            String name = (String) jsonObject.get("Name");
-            String age = (String) jsonObject.get("Age");
-            JSONArray birthdayArray = (JSONArray) jsonObject.get("Birthday");
-            String birthday = (String) birthdayArray.get(0);
+        	for (Object obj : jsonArray) {
+				// Cast obj to JSONObject
+	            JSONObject jsonObject = (JSONObject) obj;
+    	        // Extract each value from the JSONObject
+        	    String name = (String) jsonObject.get("Name");
+            	String age = (String) jsonObject.get("Age");
+    	        JSONArray birthdayArray = (JSONArray) jsonObject.get("Birthday");
+       		    String birthday = (String) birthdayArray.get(0);
 
-            System.out.println("Name: " + name + " Age: " + age + " Birthday: " + birthday);
-        	System.out.println();
-		}
-    } catch (IOException | ParseException e) {
-        e.printStackTrace();
-    }
-}
+            	System.out.println("Name: " + name + " Age: " + age + " Birthday: " + birthday);
+        		System.out.println();
+			}
+	    } catch (IOException | ParseException e) {
+        	e.printStackTrace();
+    	}
+	}
     public static void write(String filePath, JSONObject newValues) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONArray jsonArray;
