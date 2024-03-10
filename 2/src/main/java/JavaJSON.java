@@ -28,7 +28,7 @@ class JavaJSON {
 		
 		System.out.println("Commands: \n");	
 		System.out.println("read, write, exit\n");
-
+	/*
 		while (true) {
 			System.out.print("Enter: ");
 			
@@ -88,8 +88,16 @@ class JavaJSON {
 			
 			if ("exit".equalsIgnoreCase(command)) {
 				break;
-			}
+			}*/
+		while (true) {
+			System.out.println("Enter: ");
+			InputHandler handleCommand = new InputHandler();
+			String command = handleCommand.scan();
+			StreamJSON stream = new StreamJSON();
+
+			if ("exit".equalsIgnoreCase(command)) {
+				break;
+			}		
 		}
 	}
 }
-
