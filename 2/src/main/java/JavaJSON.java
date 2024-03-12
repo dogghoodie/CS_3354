@@ -28,7 +28,9 @@ class JavaJSON {
 		
 		System.out.println("Commands: \n");	
 		System.out.println("read, write, exit\n");
-	/*
+
+		// Old method of handling commands O(n)
+		/*
 		while (true) {
 			System.out.print("Enter: ");
 			
@@ -89,11 +91,20 @@ class JavaJSON {
 			if ("exit".equalsIgnoreCase(command)) {
 				break;
 			}*/
+
+		// New method of handling commands O(1)
+		// Implements hashmap framework from JCF
 		while (true) {
 			System.out.println("Enter: ");
 			InputHandler handleCommand = new InputHandler();
 			String command = handleCommand.scan();
 			StreamJSON stream = new StreamJSON();
+			
+			try {
+			
+			} catch (Exception e) {
+				System.err.println("Anb error occured: " + e.getMessage());
+			}
 
 			if ("exit".equalsIgnoreCase(command)) {
 				break;
