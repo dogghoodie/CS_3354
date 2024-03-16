@@ -35,7 +35,7 @@ public class StreamJSON {
     public static void write(String filePath, JSONObject newValues) throws IOException {
         JSONArray jsonArray = new JSONArray();
 
-        // Update the JSON object in the map if it exists; add otherwise
+        // Update the JSON object in the map if it exists/ add otherwise
         String nameKey = (String) newValues.get("Name");
         JSONObject jsonObjectToUpdate = jsonMap.get(nameKey);
         if (jsonObjectToUpdate != null) {
